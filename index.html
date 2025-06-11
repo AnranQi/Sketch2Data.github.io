@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="description"
+          content="Sketch2Data: Recovering Data from Hand-Drawn Infographics">
+    <meta name="keywords" content="Data visualization, infographics, glyphs, drawing analysis">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sketch2Data: Recovering Data from Hand-Drawn Infographics</title>
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+    rel="stylesheet">
+
+    <link rel="stylesheet" href="./resources/css/bulma.min.css">
+    <link rel="stylesheet" href="./resources/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./resources/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./resources/css/fontawesome.all.min.css">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="./resources/css/index.css">
+    <link rel="icon" href="./resources/imgs/icon.jpg">
+  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./resources/js/fontawesome.all.min.js"></script>
+    <script src="./resources/js/bulma-carousel.min.js"></script>
+    <script src="./resources/js/bulma-slider.min.js"></script>
+    <script src="./resources/js/index.js"></script>
+</head>
+
+<body>
+
+
+    <!-- Title, authors -->
+    <section class="hero">
+        <div class="hero-body">
+          <div class="container is-max-desktop">
+            <div class="columns is-centered">
+              <div class="column has-text-centered">
+                <h1 class="title is-1 publication-title">Sketch2Data: Recovering Data from <br> Hand-Drawn Infographics</h1>
+                <h3 class="title is-4" style="color: #555555">Computer and Graphics - Journal paper - <br> Presented at ACM/EG
+Expressive Symposium</h3>
+                <div class="is-size-5 publication-authors">
+                  <span class="author-block">
+                    <a href="https://anranqi.github.io/" target="_blank">Anran Qi</a><sup>1</sup>,</span>
+                  <span class="author-block">
+                    <a href="https://www.lri.fr/~fanis/" target="_blank">Theophanis Tsandilas</a><sup>2</sup>,
+                  </span>
+                  <span class="author-block">
+                    <a href="https://faculty.runi.ac.il/arik/site/index.asp" target="_blank">Ariel Shamir</a><sup>3</sup>,
+                  </span>
+                  <span class="author-block">
+                    <a href="https://www-sop.inria.fr/members/Adrien.Bousseau/" target="_blank">Adrien Bousseau</a><sup>1</sup>
+                  </span>
+                </div>
+      
+                <div class="is-size-5 publication-authors">
+                  <span class="author-block"><sup>1</sup>Centre Inria d’Université Côte d’Azur,</span>
+                  <span class="author-block"><sup>2</sup>Université Paris-Saclay, CNRS, Inria, LISN,</span>
+                  <span class="author-block"><sup>3</sup>Reichman University</span> <br>
+                </div>
+      
+                <div class="column has-text-centered">
+                  <div class="publication-links">
+                    <!-- PDF Link. -->
+                    <span class="link-block">
+                      <a href="https://anranqi.github.io/img/RevEngSketches_compress.pdf"
+                         class="external-link button is-normal is-rounded is-dark" target="_blank">
+                        <span class="icon">
+                            <i class="fas fa-file-pdf"></i>
+                        </span>
+                        <span>Paper</span>
+                      </a>
+                    </span>
+                    <!-- Video Link. -->
+                      <span class="link-block">
+                      <a href="https://anranqi.github.io/img/sketch2data_expressive.pdf"
+                         class="external-link button is-normal is-rounded is-dark" target="_blank">
+                        <span class="icon">
+                            <i class="fas fa-file-pdf"></i>
+                        </span>
+                        <span>Presentation Slides</span>
+                      </a>
+                    </span>
+                    <!-- Code Link. -->
+                    <span class="link-block">
+                      <a href="https://github.com/AnranQi/Sketch2Data" target="_blank"
+                         class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                            <i class="fab fa-github"></i>
+                        </span>
+                        <span>Code</span>
+                        </a>
+                    </span>
+
+                   <span class="link-block">
+                      <a href="https://anranqi.github.io/img/Sup_RevEngSketches_compress.pdf" target="_blank"
+                         class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                            <i class="fas fa-folder"></i>
+                        </span>
+                        <span>Suppl.</span>
+                      </a>
+                    </span>
+
+                  </div>
+      
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    
+    <!-- Teaser -->
+    <section class="hero teaser">
+        <div class="container is-max-desktop">
+            <div class="hero-body">
+            <img src="./resources/imgs/teaser.png" class="teaser" alt="Teaser Image"/>
+            <h3 class="subtitle has-text-justified">
+                We introduce a method to recover data values from glyph-based hand-drawn infographics.
+Given a visualization in a bitmap format and a user-defined parametric template of its glyphs, we leverage deep
+neural networks to detect and localize the visualization glyphs, and estimate the data values they represent.
+            </h3>
+            </div>
+        </div>
+    </section>
+
+  <section class="section py-0">
+  <div class="container is-max-desktop">
+
+
+    <div class="columns">
+      <!-- Slideshow: Thoughts -->
+      <div class="column has-text-centered">
+         <h3 class="title is-5 mb-2"><em>Thoughts</em> design</h3>
+        <div style="height: 300px; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+          <img id="slideshow-thoughts" src="./resources/imgs/thoughts/design.jpg"
+               style="max-height: 100%; max-width: 100%; object-fit: contain;" />
+        </div>
+        <div id="caption-thoughts" class="has-text-centered mt-2 is-size-6 has-text-grey">
+          dataset_variations.png
+        </div>
+      </div>
+
+      <!-- Slideshow: dog -->
+      <div class="column has-text-centered">
+         <h3 class="title is-5 mb-2"><em>Dogs</em> design</h3>
+        <div style="height: 300px; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+          <img id="slideshow-dog" src="./resources/imgs/dog/design.jpg"
+               style="max-height: 100%; max-width: 100%; object-fit: contain;" />
+        </div>
+        <div id="caption-dog" class="has-text-centered mt-2 is-size-6 has-text-grey">
+          design.jpg
+        </div>
+      </div>
+
+      <!-- Slideshow: leaf -->
+      <div class="column has-text-centered">
+        <h3 class="title is-5" style="margin-bottom: 0.0rem;"><em>Leaf</em> design</h3>
+        <div style="height: 300px; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+          <img id="slideshow-leaf" src="./resources/imgs/leaf/design.jpeg"
+               style="max-height: 100%; max-width: 100%; object-fit: contain;" />
+        </div>
+        <div id="caption-leaf" class="has-text-centered mt-2 is-size-6 has-text-grey">
+          reconstruction_gt.png
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const thoughtsImages = [
+      "design.jpg",
+      "template_design.png",
+      "glyph_variations.png",
+      "bounding_box.jpeg",
+      "reconstruction_label.png",
+      "reconstruction_gt.png"
+    ];
+
+    const dogImages = [
+      "design.jpg",
+      "template_design.png",
+      "glyph_variations.png",
+      "bounding_box.jpeg",
+      "reconstruction_label.png",
+      "reconstruction_gt.png"
+    ];
+
+    const leafImages = [
+      "design.jpeg",
+      "template_design.png",
+      "glyph_variations.png",
+      "bounding_box.jpeg",
+      "reconstruction_label.png",
+      "reconstruction_gt.png"
+    ];
+
+    const Captions = [
+      "Infographic design",
+      "Template design",
+      "Glyph variations",
+      "Detected bounding box",
+      "Reconstructed design",
+      "Ground truth design"
+    ];
+
+    let index = 0;
+    const delay = 1500;
+
+    setInterval(() => {
+      index = (index + 1) % thoughtsImages.length;
+
+      const thoughtsPath = `./resources/imgs/thoughts/${thoughtsImages[index]}`;
+      const dogPath = `./resources/imgs/dog/${dogImages[index]}`;
+      const leafPath = `./resources/imgs/leaf/${leafImages[index]}`;
+
+      document.getElementById("slideshow-thoughts").src = thoughtsPath;
+      document.getElementById("slideshow-dog").src = dogPath;
+      document.getElementById("slideshow-leaf").src = leafPath;
+
+      document.getElementById("caption-thoughts").textContent = Captions[index];
+      document.getElementById("caption-dog").textContent = Captions[index];
+      document.getElementById("caption-leaf").textContent = Captions[index];
+    }, delay);
+  </script>
+</section>
+
+
+    <!-- Motivation -->
+    <section class="section">
+        <div class="container is-max-desktop">
+
+            <!-- Overview -->
+            <div class="columns is-centered">
+                <div class="column is-full-width">
+                    <h2 class="title is-3 has-text-centered">Motivation</h2>
+
+                    <div class="content has-text-justified">
+                        <p>
+                            Data collection and visualization have traditionally been seen as activities reserved for experts. However, by drawing
+                            simple geometric figures — known as glyphs — anyone can visually record their own data, as shown below. Still, the resulting
+                            hand-drawn infographics do not provide direct access to the underlying data, hindering digital editing of both the
+                            glyphs and their values.
+                        </p>
+                    </div>
+                    <img src="./resources/imgs/collected_visualizations.png" class="" alt="Motivation Image"/>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+
+    <section class="section py-4"> <!-- reduce vertical padding of the section -->
+  <div class="container is-max-desktop">
+
+    <!-- Overview -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3 has-text-centered mb-3">Method</h2>
+
+        <img src="./resources/imgs/method.png" alt="Method Image" class="mb-3" />
+
+        <div class="content has-text-justified mb-3">
+          <p>
+            Overview of our method: given an input hand-drawn infographic (a), the user defines a parametric glyph template by specifying all
+            elements that compose the glyph and their visual variations (b). Based on this template, we synthesize an annotated dataset of glyph drawings
+            (c) and use it to train a glyph detector (d) and a parameter predictor (e). A simple interface (see videos below) allows users to review the
+            recovered data, make corrections, and even refine the template to achieve higher accuracy.
+          </p>
+        </div>
+
+        <!-- Videos side by side -->
+        <div class="columns is-vcentered is-variable is-1"> <!-- tighter column gap -->
+
+          <!-- Video 1 -->
+          <div class="column">
+            <figure class="image">
+              <video autoplay controls muted loop playsinline style="width: 100%;">
+                <source src="./resources/videos/Glyph_Detector_UI.mov" type="video/mp4">
+              </video>
+              <figcaption class="has-text-centered mt-2">
+                 Glyph detection interface
+              </figcaption>
+            </figure>
+          </div>
+
+          <!-- Video 2 -->
+          <div class="column">
+            <figure class="image">
+              <video autoplay controls muted loop playsinline style="width: 100%;">
+                <source src="./resources/videos/Glyph_Parameter_UI.mov" type="video/mp4">
+              </video>
+              <figcaption class="has-text-centered mt-2">
+               Parameter estimation interface
+              </figcaption>
+            </figure>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+    <!-- Examples Section -->
+
+    <section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3 has-text-centered">Application</h2>
+
+        <h3 class="title is-4 has-text-centered">Application 1: Reverse engineering existing infographics</h3>
+
+        <div class="content has-text-justified">
+          <p>
+            We have created a benchmark of 10 hand-drawn infographics collected from diverse
+            sources, including from data designers who advocate drawing for visualization, as well as from coursework
+            of design schools.
+          </p>
+        </div>
+
+          <img src="./resources/imgs/triangle.png" class="" alt="Motivation Image"/>
+          <p>
+              For <em>Triangle</em> design, we show Input image (top left), sampled glyphs from the training dataset (top right),
+            detected glyphs (center left, green boxes indicate True Positive detection and red boxes indicate False Positive detection),
+            reconstruction from the estimated parameter values (center right, red outlines indicate glyphs for which one or several parameter
+            values are erroneous), reconstruction from the ground truth parameter values (bottom left).
+          </p>
+
+        <!-- Buttons container for horizontal layout -->
+
+        Others:
+        <div class="buttons" style="justify-content: center; gap: 1em; margin-bottom: 1em;">
+          <button class="button is-link is-light is-small toggle-btn" data-target="pdf1">
+            <span class="icon-text">
+              <span class="icon toggle-icon">▶</span>
+              <span><em>Thoughts</em></span>
+            </span>
+          </button>
+          <button class="button is-link is-light is-small toggle-btn" data-target="pdf2">
+            <span class="icon-text">
+              <span class="icon toggle-icon">▶</span>
+              <span><em>Sound</em></span>
+            </span>
+          </button>
+            <button class="button is-link is-light is-small toggle-btn" data-target="pdf3">
+            <span class="icon-text">
+              <span class="icon toggle-icon">▶</span>
+              <span><em>Book</em></span>
+            </span>
+          </button>
+
+            <button class="button is-link is-light is-small toggle-btn" data-target="pdf4">
+            <span class="icon-text">
+              <span class="icon toggle-icon">▶</span>
+              <span><em>Boyfriend</em></span>
+            </span>
+          </button>
+            <button class="button is-link is-light is-small toggle-btn" data-target="pdf5">
+            <span class="icon-text">
+              <span class="icon toggle-icon">▶</span>
+              <span><em>Dog</em></span>
+            </span>
+          </button>
+
+             <button class="button is-link is-light is-small toggle-btn" data-target="pdf6">
+            <span class="icon-text">
+              <span class="icon toggle-icon">▶</span>
+              <span><em>Leaf</em></span>
+            </span>
+          </button>
+
+              <button class="button is-link is-light is-small toggle-btn" data-target="pdf7">
+            <span class="icon-text">
+              <span class="icon toggle-icon">▶</span>
+              <span><em>Lollipop</em></span>
+            </span>
+          </button>
+
+               <button class="button is-link is-light is-small toggle-btn" data-target="pdf8">
+            <span class="icon-text">
+              <span class="icon toggle-icon">▶</span>
+              <span><em>Smell</em></span>
+            </span>
+          </button>
+              <button class="button is-link is-light is-small toggle-btn" data-target="pdf9">
+            <span class="icon-text">
+              <span class="icon toggle-icon">▶</span>
+              <span><em>Tree</em></span>
+            </span>
+          </button>
+
+        </div>
+
+                  <!-- Image containers -->
+            <div id="pdf1" class="pdf-container" style="display: none; margin-top: 1em;">
+              <img src="./resources/imgs/thoughts.png" alt="Example 1" style="width: 100%; height: auto;" />
+            </div>
+            <div id="pdf2" class="pdf-container" style="display: none; margin-top: 1em;">
+              <img src="./resources/imgs/sound.png" alt="Example 2" style="width: 100%; height: auto;" />
+            </div>
+           <div id="pdf3" class="pdf-container" style="display: none; margin-top: 1em;">
+              <img src="./resources/imgs/book.png" alt="Example 2" style="width: 100%; height: auto;" />
+            </div>
+           <div id="pdf4" class="pdf-container" style="display: none; margin-top: 1em;">
+              <img src="./resources/imgs/boyfriend.png" alt="Example 2" style="width: 100%; height: auto;" />
+            </div>
+          <div id="pdf5" class="pdf-container" style="display: none; margin-top: 1em;">
+              <img src="./resources/imgs/dog.png" alt="Example 2" style="width: 100%; height: auto;" />
+            </div>
+            <div id="pdf6" class="pdf-container" style="display: none; margin-top: 1em;">
+              <img src="./resources/imgs/leaf.png" alt="Example 2" style="width: 100%; height: auto;" />
+            </div>
+            <div id="pdf7" class="pdf-container" style="display: none; margin-top: 1em;">
+              <img src="./resources/imgs/lollipop.png" alt="Example 2" style="width: 100%; height: auto;" />
+            </div>
+           <div id="pdf8" class="pdf-container" style="display: none; margin-top: 1em;">
+              <img src="./resources/imgs/smell.png" alt="Example 2" style="width: 100%; height: auto;" />
+            </div>
+           <div id="pdf9" class="pdf-container" style="display: none; margin-top: 1em;">
+              <img src="./resources/imgs/tree.png" alt="Example 2" style="width: 100%; height: auto;" />
+            </div>
+
+
+
+
+        <h3 class="title is-4 has-text-centered">Application 2: Glyphs drawn by different people</h3>
+
+        <div class="content has-text-justified">
+          <p>
+              We conducted a study to evaluate the second usage scenario where users record data by drawing glyphs according to a prescribed template. We have collected
+                drawings of the same glyphs from multiple participants
+                and evaluate the sensitivity of our approach to variations
+                in individual drawing styles.
+          </p>
+
+        </div>
+              <img src="./resources/imgs/leaf_us.png" class="" alt="Motivation Image"/>
+          <p>
+              Results for the Leaf design from 12 participants. Input image (top, drawings from 12 participants and PID indicates participant ID),
+detected glyphs (second row, green boxes indicate True Positive detection and red boxes indicate False Positive detection), reconstruction from the
+estimated parameter values (third row, red outlines indicate glyphs for which one or several parameter values are erroneous), reconstruction from
+the ground truth parameter values (bottom).
+          </p>
+
+
+
+        <div style="margin-top: 3em;"></div>
+
+<h3 class="title is-4 has-text-centered">Application 3: Editing hand-drawn infographics</h3>
+
+<!-- First Figure: Editing Leaf Template -->
+<figure class="has-text-centered">
+  <img src="./resources/imgs/edit_leaf_template.png" alt="Editing Leaf Template" />
+  <figcaption class="is-size-6 has-text-grey mt-2">
+    Reverse engineering the input hand-drawn illustration (a), drawn by Participants 1, 2, and 3, into a clean vector infographic (b). This enables various operations such as editing the data table itself (c), redesigning (d), recoloring (e) the marks of the Leaf template, and creating a new layout for the glyphs (f).
+  </figcaption>
+</figure>
+
+<div style="margin-top: 2em;"></div>
+
+<!-- Second Figure: Swapping Templates -->
+<figure class="has-text-centered">
+  <img src="./resources/imgs/swap_template.png" alt="Swapping Templates for Thoughts" />
+  <figcaption class="is-size-6 has-text-grey mt-2">
+    Reverse engineering the original hand-drawn illustration of <em>Thoughts</em> (a) into a clean vector infographic (b) allows the same data to be visualized using different templates (c). In this example: Lollipop template (d), Dog template (e), and Boyfriend template (f).
+  </figcaption>
+</figure>
+
+
+
+
+
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+document.querySelectorAll('.toggle-btn').forEach(button => {
+  const icon = button.querySelector('.toggle-icon');
+  const target = document.getElementById(button.getAttribute('data-target'));
+
+  button.addEventListener('click', () => {
+    const isVisible = target.style.display === 'block';
+
+    // Hide all pdf containers and reset icons
+    document.querySelectorAll('.pdf-container').forEach(div => {
+      div.style.display = 'none';
+    });
+    document.querySelectorAll('.toggle-icon').forEach(i => {
+      i.textContent = '▶';
+    });
+
+    // If previously hidden, show the clicked one and update icon
+    if (!isVisible) {
+      target.style.display = 'block';
+      icon.textContent = '▼';
+    }
+  });
+});
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Citation -->
+    <section class="section" id="BibTeX">
+        <div class="container is-max-desktop content">
+          <h2 class="title">BibTeX</h2>
+          <pre><code>@article{QI2025104251,
+            title = {Sketch2Data: Recovering data from hand-drawn infographics},
+            journal = {Computers & Graphics},
+            volume = {130},
+            pages = {104251},
+            year = {2025},
+            issn = {0097-8493},
+            doi = {https://doi.org/10.1016/j.cag.2025.104251},
+            url = {https://www.sciencedirect.com/science/article/pii/S0097849325000925},
+            author = {Anran Qi and Theophanis Tsandilas and Ariel Shamir and Adrien Bousseau}}
+          </code></pre>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+          <div class="columns is-centered">
+            <div class="column is-8">
+              <div class="content">
+                <h2 class="title">Acknowlegement</h2>
+                <p style="font-size:120%;">
+                    This work is partially supported by ANR-21-CE33-0002 GLACIS and Joint NSFC-ISF Research Grant no. 3077/23.
+                </p>
+                <p>
+                    We borrow the source code of this website from  <a
+                    href="https://nerfies.github.io/" target="_blank">Nerfies</a>. Last update: May 2025.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+
+
+</body>
+</html>
